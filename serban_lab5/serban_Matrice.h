@@ -16,11 +16,12 @@ public:
 	Matrice operator= (Matrice);
 	Matrice operator- (Matrice);
 	Matrice operator* (Matrice);
-	Matrice operator== (Matrice);
+	bool operator== (Matrice);
 	Matrice operator+ ();
 	Matrice operator+ (int);
 	Matrice operator~ ();
 	Matrice operator++ (int);
-	Matrice operator() (int a);
+	Matrice operator++ ();
+	int operator[](const int &index);
 
 };

@@ -80,7 +80,6 @@ Matrice Matrice::operator+(Matrice a)
 	
 	if ((nrL == a.nrL) && (nrC == a.nrC))
 	{
-
 		for (int i = 0; i < nrL; i++)
 		{
 			for (int j = 0; j < nrC; j++)
@@ -97,18 +96,17 @@ Matrice Matrice::operator+(Matrice a)
 }
 
 
-Matrice Matrice::operator=(Matrice a)
+Matrice Matrice::operator-(Matrice a)
 {
 	Matrice temp(a.nrL, a.nrC);
 
 	if ((nrL == a.nrL) && (nrC == a.nrC))
 	{
-
 		for (int i = 0; i < nrL; i++)
 		{
 			for (int j = 0; j < nrC; j++)
 			{
-				 temp.elemente[i][j] = a.elemente[i][j];
+				temp.elemente[i][j] = elemente[i][j] - a.elemente[i][j];
 			}
 		}
 	}
@@ -118,3 +116,165 @@ Matrice Matrice::operator=(Matrice a)
 	}
 	return temp;
 }
+
+
+Matrice Matrice::operator*(Matrice a)
+{
+	Matrice temp(a.nrL, a.nrC);
+
+	if ((nrL == a.nrL) && (nrC == a.nrC))
+	{
+		for (int i = 0; i < nrL; i++)
+		{
+			for (int j = 0; j < nrC; j++)
+			{
+				temp.elemente[i][j] = 0;
+				for (int k = 0; k < nrC; k++)
+				{
+					temp.elemente[i][j] += elemente[i][k] * a.elemente[k][j];
+				}
+			}
+		}
+	}
+	else
+	{
+		std::cout << "Nu au aceasi dimensiune matricele\n";
+	}
+	return temp;
+}
+
+
+bool Matrice::operator==(Matrice a)
+{
+	if ((nrL == a.nrL) && (nrC == a.nrC))
+	{
+		for (int i = 0; i < nrL; i++)
+		{
+			for (int j = 0; j < nrC; j++)
+			{
+				if (elemente[i][j] != a.elemente[i][j])
+				{
+					std::cout << "Matricile nu sunt egale\n";
+					return false;
+					break;
+				}
+			}
+		}
+		std::cout << "Matricile sunt egale\n";
+	}
+	else
+	{
+		std::cout << "Nu au aceasi dimensiune matricele\n";
+	}
+	return true;
+}
+
+
+Matrice Matrice::operator+(int  a)
+ {
+	Matrice temp(nrL, nrC);
+
+	for (int i = 0; i < nrL; i++)
+	{
+		for (int j = 0; j < nrC; j++)
+		{
+			temp.elemente[i][j] = elemente[i][j] + a;
+		}
+	}
+	return temp;
+ }
+
+
+Matrice Matrice::operator=(Matrice a)
+{
+	if ((nrL == a.nrL) && (nrC == a.nrC))
+	{
+		for (int i = 0; i < nrL; i++)
+		{
+			for (int j = 0; j < nrC; j++)
+			{
+				std::swap(elemente[i][j], a.elemente[i][j]);
+			}
+		}
+	}
+	else
+	{
+		std::cout << "Nu au aceasi dimensiune matricele\n";
+	}
+	return *this;
+}
+
+
+Matrice Matrice::operator++(int)
+{
+	Matrice temp = *this;
+
+	if (nrL == nrC)
+	{
+		for (int i = 0; i < nrL; i++)
+		{
+			elemente[i][i]++;
+		}
+	}
+	else
+	{
+		std::cout << "Matricea nu e patratica\n";
+	}
+	return temp;
+}
+
+
+Matrice Matrice::operator++()
+{
+	if (nrL == nrC)
+	{
+		for (int i = 0; i < nrL; i++)
+		{
+			elemente[i][i]++;
+		}
+	}
+	else
+	{
+		std::cout << "Matricea nu e patratica\n";
+	}
+	return *this;
+}
+
+
+Matrice Matrice::operator~()
+{
+	std::swap(nrL, nrC);
+	for (int i = 0; i < nrL; i++)
+	{
+		for(int j = 0; j < nrC; j++)
+		{
+			std::swap(elemente[i][j], elemente[j][i]);
+		}
+	}
+	return *this;
+}
+
+
+int Matrice::operator[](const int &index)
+{
+	return elemente[index/nrC][index%nrL];
+}
+
+
+/*
+Matrice Matrice::operator+()
+{
+	Matrice temp(nrL, nrC);
+
+	for (int i = 0; i < nrL; i++)
+	{
+		for (int j = 0; j < nrC; j++)
+		{
+			temp.elemente[i][j] = elemente[i][j] ;
+		}
+	}
+	return temp;
+}
+*/
+
+
