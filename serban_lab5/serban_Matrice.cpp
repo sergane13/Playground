@@ -243,10 +243,12 @@ Matrice Matrice::operator++()
 
 Matrice Matrice::operator~()
 {
-	std::swap(nrL, nrC);
+
+	//pentru matrice patratica
+
 	for (int i = 0; i < nrL; i++)
 	{
-		for(int j = 0; j < nrC; j++)
+		for(int j = 0; j < i; j++)
 		{
 			std::swap(elemente[i][j], elemente[j][i]);
 		}
@@ -260,7 +262,7 @@ int Matrice::operator[](const int &index)
 	return elemente[index/nrC][index%nrL];
 }
 
-
+// suprascriu + din int
 /*
 Matrice Matrice::operator+()
 {
@@ -276,5 +278,3 @@ Matrice Matrice::operator+()
 	return temp;
 }
 */
-
-
