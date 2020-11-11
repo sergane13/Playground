@@ -25,6 +25,9 @@ int main()
 
 	bubbleSort(number, vector_1);
 	afisare_vector(number, vector_1);
-
+	
+	delete[] vector;
+	delete[] vector_1;
+	
 	return 0;
 }
