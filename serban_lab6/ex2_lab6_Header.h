@@ -13,7 +13,7 @@ public:
 	Multime(const Multime& copy);
 	~Multime();
 	void citire();
-	int operator!();
+	T operator!();
 	Multime operator+(Multime);
 	void aduna(Multime a);
 
@@ -75,7 +75,7 @@ Multime<T> Multime<T>::operator+(Multime<T> a)
 
 
 template<typename T>
-int Multime<T>::operator!()
+T Multime<T>::operator!()
 {
 	T temp = vector[0];
 	for (int i = 1; i < numar_elemente; i++)
