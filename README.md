@@ -1,3 +1,3 @@
-# Lab-P2
-share la teme aici
+# Playground for C++
+Testing and learning the c++ language
 
